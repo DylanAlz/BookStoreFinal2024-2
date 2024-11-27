@@ -5,7 +5,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
 {
     public class CategoriaService : ICategoriaService
     {
-        public Task<Categoria> CreateCategoriaAsync(Libro libro)
+        public Task<Categoria> CreateCategoriaAsync(Categoria categoria)
         {
             throw new NotImplementedException();
         }
@@ -15,7 +15,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Task<Categoria> EditCategoriaAsync(Libro libro)
+        public Task<Categoria> EditCategoriaAsync(Categoria categoria)
         {
             throw new NotImplementedException();
         }

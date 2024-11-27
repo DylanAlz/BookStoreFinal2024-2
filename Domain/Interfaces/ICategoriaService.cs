@@ -6,8 +6,8 @@ namespace ApilibrosFinal2024_2.Domain.Interfaces
     {
         Task<IEnumerable<Categoria>> GetCategoriasAsync();
         Task<Categoria> GetCategoriaByIdAsync(Guid id);
-        Task<Categoria> CreateCategoriaAsync(Libro libro);
+        Task<Categoria> CreateCategoriaAsync(Categoria categoria);
         Task<Categoria> DeleteCategoriaAsync(Guid Id);
-        Task<Categoria> EditCategoriaAsync(Libro libro);
+        Task<Categoria> EditCategoriaAsync(Categoria categoria);
     }
 }
