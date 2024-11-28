@@ -1,4 +1,6 @@
 using ApilibrosFinal2024_2.Dal;
+using ApilibrosFinal2024_2.Domain.Interfaces;
+using ApilibrosFinal2024_2.Domain.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,11 @@ builder.Services.AddControllers();
 
 //esta linea se usa para configurar la conexión a la BD
 builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//
+
+builder.Services.AddScoped<ILibroService, LibroService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

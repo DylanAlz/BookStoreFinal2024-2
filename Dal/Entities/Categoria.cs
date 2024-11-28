@@ -6,9 +6,8 @@ namespace ApilibrosFinal2024_2.Dal.Entities
     {
         [Display(Name = "Categoría")]
         [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caracteres")] //Longitud max
-        [Required(ErrorMessage = "Es campo {0} obligatorio")] //Campo obligatorio
-        public int Nombre_cat { get; set; }
-        public int descripcion { get; set; }
+        public string Nombre_cat { get; set; }
+        public string? descripcion { get; set; }
 
         //Relacion de las tablas Libro y Categoria
 

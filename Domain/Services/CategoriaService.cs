@@ -1,33 +1,98 @@
-﻿using ApilibrosFinal2024_2.Dal.Entities;
+﻿using ApilibrosFinal2024_2.Dal;
+using ApilibrosFinal2024_2.Dal.Entities;
 using ApilibrosFinal2024_2.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApilibrosFinal2024_2.Domain.Services
 {
     public class CategoriaService : ICategoriaService
     {
-        public Task<Categoria> CreateCategoriaAsync(Categoria categoria)
+
+        private readonly DataBaseContext _context;
+        public CategoriaService(DataBaseContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task<Categoria> CreateCategoriaAsync(Categoria categoria)
+        {
+            try
+            {
+                categoria.CreatedDate = DateTime.Now;
+                categoria.Id = Guid.NewGuid();
+                _context.Categorias.Add(categoria);
+                await _context.SaveChangesAsync();
+                return categoria;
+
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+
+                throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
+            }
         }
 
-        public Task<Categoria> DeleteCategoriaAsync(Guid Id)
+        public async Task<Categoria> DeleteCategoriaAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var categoria = await GetCategoriaByIdAsync(Id);
+                if (categoria != null)
+                {
+                    return null;
+                }
+                _context.Categorias.Remove(categoria);
+                await _context.SaveChangesAsync();
+                return categoria;
+                        
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+
+                throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
+            }
         }
 
-        public Task<Categoria> EditCategoriaAsync(Categoria categoria)
+        public async Task<Categoria> EditCategoriaAsync(Categoria categoria)
         {
-            throw new NotImplementedException();
+            try
+            {
+                categoria.ModifyDate = DateTime.Now;
+                _context.Categorias.Update(categoria);
+                await _context.SaveChangesAsync();
+                return categoria;
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+
+                throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
+            }
         }
 
-        public Task<Categoria> GetCategoriaByIdAsync(Guid id)
+        public async Task<Categoria> GetCategoriaByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.Id == id);
+                return categoria;
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+
+                throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
+            }
         }
 
-        public Task<IEnumerable<Categoria>> GetCategoriasAsync()
+        public async Task<IEnumerable<Categoria>> GetCategoriasAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _context.Categorias.ToListAsync();
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+
+                throw new Exception(dbUpdateException.InnerException?.Message ?? dbUpdateException.Message);
+            }
         }
     }
 }
