@@ -22,7 +22,7 @@ namespace ApilibrosFinal2024_2.Controllers
             return Ok(categorias);
         }
         [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")]
+        [Route("GetById/{Id}")]
         public async Task<ActionResult<Categoria>> GetCategoriaByIdAsync(Guid Id)
         {
             var categoria = await _categoriaService.GetCategoriaByIdAsync(Id);

@@ -25,7 +25,7 @@ namespace ApilibrosFinal2024_2.Controllers
             return Ok(libros);  
         }
         [HttpGet, ActionName("Get")]
-        [Route("GetById/{id}")]
+        [Route("GetById/{Id}")]
         public async Task<ActionResult<Libro>> GetLibroByIdAsync(Guid Id)
         {
             var libro=await _libroService.GetLibroByIdAsync(Id);

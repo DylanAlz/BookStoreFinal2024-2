@@ -71,7 +71,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
         {
             try
             {
-                var libro = await _context.Libros.Include(o => o.categorias).FirstOrDefaultAsync(x => x.Id == id);
+                var libro = await _context.Libros.FirstOrDefaultAsync(x => x.Id == id);
                 return libro;
             }
             catch (DbUpdateException dbUpdateException)
@@ -84,7 +84,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
         {
             try
             {
-                return await _context.Libros.Include(o => o.categorias).ToListAsync();
+                return await _context.Libros.ToListAsync();
             }
             catch (DbUpdateException dbUpdateException)
             {
