@@ -84,7 +84,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
         {
             try
             {
-                return await _context.Libros.ToListAsync();
+                return await _context.Libros.Include(c=>c.categorias).ToListAsync();
             }
             catch (DbUpdateException dbUpdateException)
             {

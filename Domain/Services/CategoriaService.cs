@@ -36,7 +36,7 @@ namespace ApilibrosFinal2024_2.Domain.Services
             try
             {
                 var categoria = await GetCategoriaByIdAsync(Id);
-                if (categoria != null)
+                if (categoria == null)
                 {
                     return null;
                 }
